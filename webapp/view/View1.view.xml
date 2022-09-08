@@ -5,6 +5,7 @@
         <content>
 			<Text text="Oi" /> 
 			<Text text="Oi2" /> 
+			<!--Desativado-->
 			<!--<Button text="Aperte aqui" press=".onShowHello"/>-->
 			<!--<Input
 				value="{/recipient/name}"

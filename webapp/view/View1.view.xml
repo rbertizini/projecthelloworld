@@ -1,25 +1,124 @@
 <mvc:View controllerName="app01.projecthelloworld.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content>
-			<Text text="Oi" /> 
-			<Text text="Oi2" /> 
-			<!--Desativado-->
-			<!--<Button text="Aperte aqui" press=".onShowHello"/>-->
-			<!--<Input
-				value="{/recipient/name}"
-				description="Texto {/recipient/name}"
-				valueLiveUpdate="true"
-				width="60%"	/>-->
-			<Button
-				text="{i18n>showHelloButtonText}"
-				press=".onShowHello"/>
-			<Input
-				value="{/recipient/name}"
-				description="Texto {/recipient/name}"
-				valueLiveUpdate="true"
-				width="60%"/>
-		</content>
-    </Page>
+    <Shell>
+		<App>
+			<pages>			
+				<Page id="page" title="{i18n>title}">
+					<content>
+
+						<Panel headerText="{i18n>helloPanelTitle}">
+							<content>
+								<Text text="Conteúdo do panel" /> 
+								<Button icon="sap-icon://accidental-leave" text="{i18n>showHelloButtonText}" spress=".onShowHello"/>
+							</content>
+						</Panel>
+						
+						<Text text="Oi2" /> 
+						<!--Desativado-->
+						<!--<Button text="Aperte aqui" press=".onShowHello"/>-->
+						<!--<Input
+							value="{/recipient/name}"
+							description="Texto {/recipient/name}"
+							valueLiveUpdate="true"
+							width="60%"	/>-->
+						<Button
+							text="{i18n>showHelloButtonText}"
+							press=".onShowHello"/>
+						<Input
+							value="{/recipient/name}"
+							description="Texto {/recipient/name}"
+							valueLiveUpdate="true"
+							width="60%"/>
+
+
+						<!--Lista-->
+						<!--<List
+							id="invoiceList"
+							class="sapUiResponsiveMargin"
+							width="auto"						
+							items="{
+										path: 'batata>/Invoices',
+										sorter:
+											{
+												path: 'ShipperName',
+												group: true,
+												descending: false
+											}
+									}">
+							
+							<headerToolbar>
+								<Toolbar>
+									<Title text="{i18n>invoiceListTitle}"/>
+									<ToolbarSpacer/>									
+									<SearchField width="30%" search=".onFilterInvoices" placeholder="Produtos"/>
+									<SearchField width="30%" search=".onFilterInvoices2" placeholder="Fornecedor"/>
+								</Toolbar>
+							</headerToolbar>
+							<items>
+								<ObjectListItem
+									title="{batata>Quantity} x {batata>ProductName} - {batata>ShipperName}"
+									number="{
+												parts: [{path: 'batata>ExtendedPrice'},'BRL'],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {
+													preserveDecimals : false,
+													currencyCode : true
+												}
+											}"
+											numberUnit="BRL"
+											numberState="{= ${batata>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
+									<firstStatus>
+										<ObjectStatus text="{ path: 'batata>Status', formatter: '.formatter.statusText' }"/>
+									</firstStatus>
+								</ObjectListItem>
+							</items>
+						</List>-->
+
+						<Table id="invoiceList" class="sapUiResponsiveMargin" width="auto"
+							items="{ path: 'batata>/Invoices', sorter: { path: 'ShipperName', group: true, descending: true } }">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Invoices"/>
+									<ToolbarSpacer/>
+									<SearchField width="30%" search=".onFilterInvoices"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="End" minScreenWidth="Small" demandPopin="true" width="4em">
+									<Text text="Qtd."/>
+								</Column>
+								<Column>
+									<Text text="Nome"/>
+								</Column>
+								<Column minScreenWidth="Small" demandPopin="true">
+									<Text text="Status"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="false">
+									<Text text="Fornecedor"/>
+								</Column>
+								<Column hAlign="End">
+									<Text text="Preço"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectNumber number="{batata>Quantity}" emphasized="false"/>
+										<ObjectIdentifier title="{batata>ProductName}"/>
+										<Text text="{ path: 'batata>Status', formatter: '.formatter.statusText' }"/>
+										<Text text="{batata>ShipperName}"/>
+										<ObjectNumber number="{ parts: [{path: 'batata>ExtendedPrice'}, 'EUR' ], type: 'sap.ui.model.type.Currency' }" unit="EUR"
+											state="{= ${batata>ExtendedPrice} > 50 ? 'Error' : 'Success' }"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+
 </mvc:View>

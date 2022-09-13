@@ -98,7 +98,7 @@
 									<Text text="Fornecedor"/>
 								</Column>
 								<Column hAlign="End">
-									<Text text="Preço"/>
+									<Text text="Valor"/>
 								</Column>
 							</columns>
 							<items>
